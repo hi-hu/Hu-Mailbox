@@ -13,6 +13,7 @@
 		B8B98C1E1A94607B00ED3064 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8B98C1D1A94607B00ED3064 /* Images.xcassets */; };
 		B8B98C211A94607B00ED3064 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8B98C1F1A94607B00ED3064 /* LaunchScreen.xib */; };
 		B8B98C2D1A94607B00ED3064 /* Hu_MailboxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B98C2C1A94607B00ED3064 /* Hu_MailboxTests.swift */; };
+		B8B98C381A94698000ED3064 /* MailboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B98C371A94698000ED3064 /* MailboxViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		B8B98C261A94607B00ED3064 /* Hu-MailboxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Hu-MailboxTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8B98C2B1A94607B00ED3064 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8B98C2C1A94607B00ED3064 /* Hu_MailboxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hu_MailboxTests.swift; sourceTree = "<group>"; };
+		B8B98C371A94698000ED3064 /* MailboxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailboxViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 				B8B98C181A94607B00ED3064 /* ViewController.swift */,
 				B8B98C1A1A94607B00ED3064 /* Main.storyboard */,
 				B8B98C1D1A94607B00ED3064 /* Images.xcassets */,
+				B8B98C361A94697000ED3064 /* ViewControllers */,
 				B8B98C1F1A94607B00ED3064 /* LaunchScreen.xib */,
 				B8B98C141A94607B00ED3064 /* Supporting Files */,
 			);
@@ -110,6 +113,14 @@
 				B8B98C2B1A94607B00ED3064 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B8B98C361A94697000ED3064 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B8B98C371A94698000ED3064 /* MailboxViewController.swift */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,6 +225,7 @@
 			files = (
 				B8B98C191A94607B00ED3064 /* ViewController.swift in Sources */,
 				B8B98C171A94607B00ED3064 /* AppDelegate.swift in Sources */,
+				B8B98C381A94698000ED3064 /* MailboxViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
