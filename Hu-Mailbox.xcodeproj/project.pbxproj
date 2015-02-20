@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B8A461A51A970D9E00BEFE15 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A461A41A970D9E00BEFE15 /* Common.swift */; };
 		B8B98C171A94607B00ED3064 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B98C161A94607B00ED3064 /* AppDelegate.swift */; };
 		B8B98C191A94607B00ED3064 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B98C181A94607B00ED3064 /* ViewController.swift */; };
 		B8B98C1C1A94607B00ED3064 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8B98C1A1A94607B00ED3064 /* Main.storyboard */; };
@@ -27,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B8A461A41A970D9E00BEFE15 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		B8B98C111A94607B00ED3064 /* Hu-Mailbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hu-Mailbox.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8B98C151A94607B00ED3064 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8B98C161A94607B00ED3064 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 			children = (
 				B8B98C161A94607B00ED3064 /* AppDelegate.swift */,
 				B8B98C181A94607B00ED3064 /* ViewController.swift */,
+				B8A461A41A970D9E00BEFE15 /* Common.swift */,
 				B8B98C1A1A94607B00ED3064 /* Main.storyboard */,
 				B8B98C1D1A94607B00ED3064 /* Images.xcassets */,
 				B8B98C361A94697000ED3064 /* ViewControllers */,
@@ -223,6 +226,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8A461A51A970D9E00BEFE15 /* Common.swift in Sources */,
 				B8B98C191A94607B00ED3064 /* ViewController.swift in Sources */,
 				B8B98C171A94607B00ED3064 /* AppDelegate.swift in Sources */,
 				B8B98C381A94698000ED3064 /* MailboxViewController.swift in Sources */,
@@ -417,6 +421,7 @@
 				B8B98C321A94607B00ED3064 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B8B98C331A94607B00ED3064 /* Build configuration list for PBXNativeTarget "Hu-MailboxTests" */ = {
 			isa = XCConfigurationList;
@@ -425,6 +430,7 @@
 				B8B98C351A94607B00ED3064 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
