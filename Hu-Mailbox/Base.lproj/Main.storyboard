@@ -36,8 +36,16 @@
                                                 <rect key="frame" x="275" y="30" width="25" height="25"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </imageView>
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="list_icon" id="0rq-RQ-H8e">
+                                                <rect key="frame" x="275" y="30" width="25" height="25"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                            </imageView>
                                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="archive_icon" id="d7o-46-BkC">
-                                                <rect key="frame" x="120" y="34" width="25" height="25"/>
+                                                <rect key="frame" x="16" y="30" width="25" height="25"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                            </imageView>
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="delete_icon" id="0Zd-nO-5X5">
+                                                <rect key="frame" x="16" y="30" width="25" height="25"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </imageView>
                                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="message" id="7Wh-Tx-PX6">
@@ -73,7 +81,11 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="1432"/>
                     <connections>
+                        <outlet property="archiveIcon" destination="d7o-46-BkC" id="j8Q-ZO-riF"/>
+                        <outlet property="deleteIcon" destination="0Zd-nO-5X5" id="58a-Pa-uKM"/>
                         <outlet property="feedImageView" destination="ZM1-aT-bdc" id="leS-d6-Ogy"/>
+                        <outlet property="laterIcon" destination="9lU-9d-Vp0" id="TBz-PR-17M"/>
+                        <outlet property="listIcon" destination="0rq-RQ-H8e" id="Oqp-Md-nur"/>
                         <outlet property="msgContainerView" destination="Kde-Af-CSP" id="tBA-14-fJD"/>
                         <outlet property="msgView" destination="7Wh-Tx-PX6" id="sZp-ew-1J5"/>
                         <outlet property="scrollView" destination="ZNd-0z-ita" id="0UG-Ys-hVc"/>
@@ -92,10 +104,12 @@
     <resources>
         <image name="archive_icon" width="25" height="25"/>
         <image name="archive_nav_icon" width="25" height="20"/>
+        <image name="delete_icon" width="25" height="25"/>
         <image name="feed" width="320" height="1202"/>
         <image name="help_label" width="320" height="37"/>
         <image name="later_icon" width="25" height="25"/>
         <image name="later_nav_icon" width="25" height="20"/>
+        <image name="list_icon" width="25" height="25"/>
         <image name="mail_nav_icon" width="25" height="20"/>
         <image name="message" width="320" height="86"/>
         <image name="nav" width="320" height="65"/>

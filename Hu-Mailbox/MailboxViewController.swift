@@ -14,6 +14,10 @@ class MailboxViewController: UIViewController {
     @IBOutlet weak var feedImageView: UIImageView!
     @IBOutlet weak var msgContainerView: UIView!
     @IBOutlet weak var msgView: UIView!
+    @IBOutlet weak var laterIcon: UIImageView!
+    @IBOutlet weak var archiveIcon: UIImageView!
+    @IBOutlet weak var deleteIcon: UIImageView!
+    @IBOutlet weak var listIcon: UIImageView!
 
     var msgViewOrigin: CGPoint! // original center point of msgView
     var msgPanCenter: CGPoint! // current center point of msgView
@@ -32,6 +36,9 @@ class MailboxViewController: UIViewController {
         scrollView.contentSize.height = feedImageView.frame.size.height + 230
         
         // set color variables
+        listIcon.alpha = 0
+        deleteIcon.alpha = 0
+        
         bgGrey = UIColor(red: 0.89, green: 0.89, blue: 0.89, alpha: 1)
         bgGreen = UIColor(red: 0.3843, green: 0.85, blue: 0.3843, alpha: 1)
         bgRed = UIColor(red: 0.9372, green: 0.3294, blue: 0.047, alpha: 1)
@@ -57,43 +64,70 @@ class MailboxViewController: UIViewController {
             msgPanCenter = msgView.center
             
         } else if(sender.state == UIGestureRecognizerState.Changed) {
-            
-
             // change the msgView center
             msgView.center = CGPoint(x: msgPanCenter.x + translation.x, y: msgPanCenter.y)
 
 //            println("translation: \(translation)    velocity: \(velocity)    center: \(msgView.center)")
-
             
             // change background color and icon based on translation
-            if(190 >= translation.x || translation.x > 60 ) {
-                msgContainerView.backgroundColor = bgGreen
+            var rangeX = Int(checkXTranslationRange(translation.x))
+
+            switch rangeX {
+                case 2:
+                    msgContainerView.backgroundColor = bgBrown
+                    laterIcon.alpha = 0
+                    listIcon.alpha = 1
+                case 1:
+                    msgContainerView.backgroundColor = bgGreen
+                    archiveIcon.alpha = 1
+                    deleteIcon.alpha = 0
+                case 0:
+                    msgContainerView.backgroundColor = bgGrey
+                case -1:
+                    msgContainerView.backgroundColor = bgYellow
+                    laterIcon.alpha = 1
+                    listIcon.alpha = 0
+                    // move icons
+                    laterIcon.center.x = laterIcon.center.x + translation.x + 60
+                
+                case -2:
+                    msgContainerView.backgroundColor = bgRed
+                    archiveIcon.alpha = 0
+                    deleteIcon.alpha = 1
+                default:
+                    break
             }
-            if(60 >= translation.x  || translation.x < -60) {
-                msgContainerView.backgroundColor = bgGrey
-            }
-            if(-60 >= translation.x || translation.x < -190 ) {
-                msgContainerView.backgroundColor = bgYellow
-            }
-            if(-190 >= translation.x) {
-                msgContainerView.backgroundColor = bgBrown
-            }
-            if(translation.x > 190 ) {
-                msgContainerView.backgroundColor = bgRed
-            }
-            
             
         } else if(sender.state == UIGestureRecognizerState.Ended) {
-            
             // move msgView back to origin
             UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 20, options: nil, animations: { () -> Void in
-
+                // code
                 self.msgView.center = self.msgViewOrigin
                 
             }, completion: { (Bool) -> Void in
                 // code
             })
         }
+    }
+    
+    func checkXTranslationRange(tX: CGFloat) -> Int {
+        // check translation value and map it to a range
+        if(190 >= tX && tX > 60 ) {
+            return 1
+        }
+        if(-60 >= tX && tX > -190 ) {
+            return -1
+        }
+        if(-190 >= tX) {
+            return 2
+        }
+        if(tX > 190 ) {
+            return -2
+        }
+        if(60 >= tX  && tX < -60) {
+            return 0
+        }
+        return 0
     }
 
     /*
