@@ -20,9 +20,9 @@ class MailboxViewController: UIViewController {
 
     var msgViewOrigin: CGPoint!     // original center point of msgView
     var msgPanCenter: CGPoint!      // current center point of msgView
+    var offsetIcon: CGFloat!        // offset of the left and right icons
     var rightIconOrigin: CGPoint!
     var leftIconOrigin: CGPoint!
-    var offsetIcon: CGFloat!        // offset of the left and right icons
     
     var bgGrey: UIColor!
     var bgGreen: UIColor!
@@ -112,6 +112,16 @@ class MailboxViewController: UIViewController {
         } else if(sender.state == UIGestureRecognizerState.Ended) {
             
             switch rangeX {
+                case 0:
+                    UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 5, options: nil, animations: { () -> Void in
+
+                        self.msgView.center.x = self.msgViewOrigin.x
+                        self.rightIcon.alpha = 0
+                        self.leftIcon.alpha = 0
+
+                    }, completion: { (Bool) -> Void in
+                        // code
+                    })
                 case 1, 2:
                     // auto slide msg off the screen to the right
                     UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 5, options: nil, animations: { () -> Void in
@@ -121,7 +131,7 @@ class MailboxViewController: UIViewController {
                         self.leftIcon.center.x = self.msgView.center.x - self.offsetIcon
                         
                         }, completion: { (Bool) -> Void in
-                            // code
+
                             self.resetMessage()
                     })
                 case -1, -2:
