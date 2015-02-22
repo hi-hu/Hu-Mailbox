@@ -10,6 +10,7 @@ import UIKit
 
 class MailboxViewController: UIViewController {
 
+    @IBOutlet weak var mailboxContainerView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var feedImageView: UIImageView!
     @IBOutlet weak var msgContainerView: UIView!
@@ -17,13 +18,17 @@ class MailboxViewController: UIViewController {
     @IBOutlet weak var rightIcon: UIImageView!
     @IBOutlet weak var leftIcon: UIImageView!
     @IBOutlet weak var modalView: UIImageView!
-
+    
+    var mailboxViewOrigin: CGPoint!
+    var mailboxViewOffset: CGFloat!
+    var menuOpen: Bool!
     var msgViewOrigin: CGPoint!     // original center point of msgView
     var msgPanCenter: CGPoint!      // current center point of msgView
     var offsetIcon: CGFloat!        // offset of the left and right icons
     var rightIconOrigin: CGPoint!
     var leftIconOrigin: CGPoint!
     
+    // color variables
     var bgGrey: UIColor!
     var bgGreen: UIColor!
     var bgRed: UIColor!
@@ -45,16 +50,34 @@ class MailboxViewController: UIViewController {
         bgBrown = UIColor(red: 0.847, green: 0.65, blue: 0.4588, alpha: 1)
 
         // set the origins of the assets
+        mailboxViewOrigin = mailboxContainerView.center
         msgViewOrigin = msgView.center
         rightIconOrigin = rightIcon.center
         leftIconOrigin = leftIcon.center
-        rightIcon.alpha = 0
-        leftIcon.alpha = 0
+
+        // menu offset
+        mailboxViewOffset = 270
+        
+        // menu is closed
+        menuOpen = false
         
         // center offset of msg and icon
         offsetIcon = 187.5
         
+        // alpha out assets
+        rightIcon.alpha = 0
+        leftIcon.alpha = 0
         modalView.alpha = 0
+        
+        var edgeGesture: UIScreenEdgePanGestureRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: "onEdgePan:")
+        edgeGesture.edges = UIRectEdge.Left
+        mailboxContainerView.addGestureRecognizer(edgeGesture)
+        
+        
+        
+//        var swipe: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "dismissKeyboard")
+//        swipe.direction = UISwipeGestureRecognizerDirection.Down
+//        self.view.addGestureRecognizer(swipe)
     }
 
     override func didReceiveMemoryWarning() {
@@ -74,10 +97,9 @@ class MailboxViewController: UIViewController {
             msgPanCenter = msgView.center
             
         } else if(sender.state == UIGestureRecognizerState.Changed) {
-//         println("translation: \(translation)    velocity: \(velocity)    center: \(msgView.center)")
             
             // change the msgView center
-            msgView.center = CGPoint(x: msgPanCenter.x + translation.x, y: msgPanCenter.y)
+            msgView.center.x = msgPanCenter.x + translation.x
             
             // change background color and icon based on translation range value
             switch rangeX {
@@ -196,7 +218,7 @@ class MailboxViewController: UIViewController {
     
     // reset the icons and msgView
     func resetMessage() {
-        
+
         feedShift(true)
         
         delay(0.5, { () -> () in
@@ -211,6 +233,7 @@ class MailboxViewController: UIViewController {
             
             // reset msgView
             self.msgView.center = CGPoint(x: self.msgViewOrigin.x, y: self.msgViewOrigin.y - 86)
+            
             UIView.animateWithDuration(0.4, animations: { () -> Void in
                 // code
                 self.msgView.center = self.msgViewOrigin
@@ -220,6 +243,35 @@ class MailboxViewController: UIViewController {
         })
     }
 
+    @IBAction func menuDidPress(sender: AnyObject) {
+        
+        if(!menuOpen) {
+            UIView.animateWithDuration(0.6, delay: 0, usingSpringWithDamping: 1.2, initialSpringVelocity: 15, options: nil, animations: { () -> Void in
+            
+                    self.mailboxContainerView.center.x = self.mailboxContainerView.center.x + self.mailboxViewOffset
+
+                }) { (Bool) -> Void in
+                    // code
+                    self.menuOpen = true
+            }
+        } else {
+            UIView.animateWithDuration(0.6, delay: 0, usingSpringWithDamping: 1.2, initialSpringVelocity: 15, options: nil, animations: { () -> Void in
+                
+                self.mailboxContainerView.center.x = self.mailboxViewOrigin.x
+                
+                }) { (Bool) -> Void in
+                    // code
+                    self.menuOpen = false
+            }
+            
+        }
+    }
+
+    func onEdgePan(sender: UIScreenEdgePanGestureRecognizer) {
+        var translation = sender.translationInView(view)
+        println(translation)
+    }
+    
     @IBAction func modalDidTap(sender: UITapGestureRecognizer) {
         UIView.animateWithDuration(0.3, animations: { () -> Void in
             self.modalView.alpha = 0
