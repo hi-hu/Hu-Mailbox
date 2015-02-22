@@ -16,6 +16,7 @@ class MailboxViewController: UIViewController {
     @IBOutlet weak var msgView: UIView!
     @IBOutlet weak var rightIcon: UIImageView!
     @IBOutlet weak var leftIcon: UIImageView!
+    @IBOutlet weak var modalView: UIImageView!
 
     var msgViewOrigin: CGPoint!     // original center point of msgView
     var msgPanCenter: CGPoint!      // current center point of msgView
@@ -49,8 +50,11 @@ class MailboxViewController: UIViewController {
         leftIconOrigin = leftIcon.center
         rightIcon.alpha = 0
         leftIcon.alpha = 0
-
+        
+        // center offset of msg and icon
         offsetIcon = 187.5
+        
+        modalView.alpha = 0
     }
 
     override func didReceiveMemoryWarning() {
@@ -118,11 +122,7 @@ class MailboxViewController: UIViewController {
                         
                         }, completion: { (Bool) -> Void in
                             // code
-                            self.feedShift(true)
-                            delay(0.5, { () -> () in
-                                self.resetIcons()
-                                self.resetMessage()
-                            })
+                            self.resetMessage()
                     })
                 case -1, -2:
                     // auto slide msg off the screen to the left
@@ -133,25 +133,25 @@ class MailboxViewController: UIViewController {
                         self.rightIcon.center.x = self.msgView.center.x + self.offsetIcon
                         
                         }, completion: { (Bool) -> Void in
-                            // code
-                            self.feedShift(true)
-                            delay(0.5, { () -> () in
-                                self.resetIcons()
-                                self.resetMessage()
+                            
+                            // set the dialogue image based on rangeX
+                            if(rangeX == -1) {
+                                self.modalView.image = UIImage(named: "reschedule.png")
+                            } else {
+                                self.modalView.image = UIImage(named: "list.png")
+                            }
+
+                            UIView.animateWithDuration(0.3, animations: { () -> Void in
+                                self.modalView.alpha = 1
                             })
                     })
-                    if(rangeX == -1) {
-                        // show ImageView
-                    } else {
-                        // show otherImageView but set the image property
-                    }
-                
                 default:
                     break
             }
         }
     }
     
+    // map translation ranges to an Int
     func checkXTranslationRange(tX: CGFloat) -> Int {
         // check translation value and map it to a range
         if(190 >= tX && tX > 60 ) {
@@ -171,16 +171,8 @@ class MailboxViewController: UIViewController {
         }
         return 0
     }
-
-    func resetIcons() {
-        rightIcon.center = rightIconOrigin
-        rightIcon.image = UIImage(named: "later_icon.png")
-        rightIcon.alpha = 0
-        leftIcon.center = leftIconOrigin
-        leftIcon.image = UIImage(named: "archive_icon.png")
-        leftIcon.alpha = 0
-    }
     
+    // shift feed up if true, down if false
     func feedShift(up: Bool) {
         UIView.animateWithDuration(0.4, animations: { () -> Void in
             if(up) {
@@ -192,14 +184,37 @@ class MailboxViewController: UIViewController {
         })
     }
     
+    // reset the icons and msgView
     func resetMessage() {
-        self.msgView.center = CGPoint(x: self.msgViewOrigin.x, y: msgViewOrigin.y - 86)
-        UIView.animateWithDuration(0.4, animations: { () -> Void in
-            // code
-            self.msgView.center = self.msgViewOrigin
-
+        
+        feedShift(true)
+        
+        delay(0.5, { () -> () in
+            
+            // reset icons
+            self.rightIcon.center = self.rightIconOrigin
+            self.rightIcon.image = UIImage(named: "later_icon.png")
+            self.rightIcon.alpha = 0
+            self.leftIcon.center = self.leftIconOrigin
+            self.leftIcon.image = UIImage(named: "archive_icon.png")
+            self.leftIcon.alpha = 0
+            
+            // reset msgView
+            self.msgView.center = CGPoint(x: self.msgViewOrigin.x, y: self.msgViewOrigin.y - 86)
+            UIView.animateWithDuration(0.4, animations: { () -> Void in
+                // code
+                self.msgView.center = self.msgViewOrigin
+            })
+            
+            self.feedShift(false)
         })
-        feedShift(false)
+    }
+
+    @IBAction func modalDidTap(sender: UITapGestureRecognizer) {
+        UIView.animateWithDuration(0.3, animations: { () -> Void in
+            self.modalView.alpha = 0
+        })
+        resetMessage()
     }
 
     /*

@@ -67,6 +67,14 @@
                                 </segments>
                                 <color key="tintColor" red="0.31764705882352939" green="0.72549019607843135" blue="0.85882352941176465" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </segmentedControl>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="reschedule" id="dCD-tC-lcL">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="p0u-8h-UAW" appends="YES" id="M3N-lL-bhI"/>
+                                </connections>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -75,6 +83,7 @@
                     <connections>
                         <outlet property="feedImageView" destination="ZM1-aT-bdc" id="leS-d6-Ogy"/>
                         <outlet property="leftIcon" destination="d7o-46-BkC" id="x8H-vB-YQ6"/>
+                        <outlet property="modalView" destination="dCD-tC-lcL" id="tUk-Z5-Emx"/>
                         <outlet property="msgContainerView" destination="Kde-Af-CSP" id="tBA-14-fJD"/>
                         <outlet property="msgView" destination="7Wh-Tx-PX6" id="sZp-ew-1J5"/>
                         <outlet property="rightIcon" destination="9lU-9d-Vp0" id="N4W-lR-iry"/>
@@ -87,6 +96,11 @@
                         <action selector="didPanMessage:" destination="vXZ-lx-hvc" id="Zqi-7G-V74"/>
                     </connections>
                 </panGestureRecognizer>
+                <tapGestureRecognizer id="p0u-8h-UAW" userLabel="modalView tap">
+                    <connections>
+                        <action selector="modalDidTap:" destination="vXZ-lx-hvc" id="hhz-Or-e05"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="174" y="406"/>
         </scene>
@@ -101,6 +115,7 @@
         <image name="mail_nav_icon" width="25" height="20"/>
         <image name="message" width="320" height="86"/>
         <image name="nav" width="320" height="65"/>
+        <image name="reschedule" width="320" height="568"/>
         <image name="search" width="320" height="42"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
