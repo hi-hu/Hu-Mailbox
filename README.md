@@ -1,31 +1,40 @@
 # Codepath Week 1 Assignment
 
-- Objective: Basic prototyping and navigation
-- Hours: 8+
-- Status: All required stories and 2 optional stories. (did not do favorites)
+- Objective: Gestures and Animations
+- Hours: 11+
+- Status: All required stories and optional stories
 
-![GIF Walkthrough](/assets/hu-dropbox-overview.gif)
+![GIF Walkthrough](/assets/hu-mailbox-overview.gif)
 
 
 #### Requirements
-Using Xcode to implement the Dropbox NUX flow with the following goals:
 
-* [x] User can tap through the 3 welcome screens.
-* [x] User can follow the create user flow.
-* [x] On the create user form, the user can tap the back button to go to the page where they can sign in or create an account.
-* [x] Before creating the account, user can choose to read the terms of service.
-* [x] After creating the account, user can view the placeholders for Files, Photos, and Favorites as well as the Settings screen.
-* [x] User can log out from the Settings screen.
-* [x] User can follow the sign in flow.
-* [x] User can tap the area for "Having trouble signing in?"
-* [x] User can log out from the Settings screen.
-
-* [ ] Optional: Add a detail view for one of the files and implement favoriting the file.
-* [x] Optional: Add UITextFields for the forms so you can actually type in them and handle dismissing the keyboard.
-* [x] Optional: You should be able to swipe through the welcome screens instead of just tapping them.
+On dragging the message left...
+* [x] Initially, the revealed background color should be gray.
+* [x] As the reschedule icon is revealed, it should start semi-transparent and become fully opaque. If released at this point, the message should return to its initial position.
+* [x] After 60 pts, the later icon should start moving with the translation and the background should change to yellow.
+* [x] Upon release, the message should continue to reveal the yellow background. When the animation it complete, it should show the reschedule options.
+* [x] After 260 pts, the icon should change to the list icon and the background color should change to brown.
+* [x] Upon release, the message should continue to reveal the brown background. When the animation it complete, it should show the list options.
+* [x] User can tap to dismissing the reschedule or list options. After the reschedule or list options are dismissed, you should see the message finish the hide animation.
+On dragging the message right...
+* [x] Initially, the revealed background color should be gray.
+* [x] As the archive icon is revealed, it should start semi-transparent and become fully opaque. If released at this point, the message should return to its initial position.
+* [x] After 60 pts, the archive icon should start moving with the translation and the background should change to green.
+* [x] Upon release, the message should continue to reveal the green background. When the animation it complete, it should hide the message.
+* [x] After 260 pts, the icon should change to the delete icon and the background color should change to red.
+* [x] Upon release, the message should continue to reveal the red background. When the animation it complete, it should hide the message.
+* [x] Optional: Panning from the edge should reveal the menu
+* [x] Optional: If the menu is being revealed when the user lifts their finger, it should continue revealing.
+* [x] Optional: If the menu is being hidden when the user lifts their finger, it should continue hiding.
+* [x] Optional: Tapping on compose should animate to reveal the compose view.
+* [x] Optional: Tapping the segmented control in the title should swipe views in from the left or right.
+* [x] Optional: Shake to undo.
 
 #### Acknowledegment
-- Created with the help from the good folks at Codepath and mentors. In addition thanks for Mark @ Thoughtbot. 
+- Created with the help from the good folks at Codepath and mentors. 
+- Thanks for Thoughtbot for hosting lab session.
+- Thanks for to the classmates for posting helpful resources.
 - GIF > Licecap http://www.cockos.com/licecap/
 
 #### License
