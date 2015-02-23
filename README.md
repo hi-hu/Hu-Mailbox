@@ -38,4 +38,4 @@ On dragging the message right...
 - GIF > Licecap http://www.cockos.com/licecap/
 
 #### License
-[MIT](./LICENSE).
+[MIT](./LICENSE.md).
