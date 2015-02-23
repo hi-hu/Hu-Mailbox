@@ -1,4 +1,4 @@
-# Codepath Week 1 Assignment
+# Codepath Week 3 Assignment
 
 - Objective: Gestures and Animations
 - Hours: 11+
